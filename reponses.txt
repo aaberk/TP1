@@ -1,0 +1,7 @@
+1) La commande git status affiche l'état actuel du dépôt Git. Elle montre :
+- la branche active,
+- les fichiers suivis ou non,
+- les fichiers modifiés,
+- les fichiers prêts à être commités.
+
+Dans mon cas, elle indique que le fichier README.md est un fichier non suivi (untracked).
