@@ -1,7 +1,78 @@
-1) La commande git status affiche l'état actuel du dépôt Git. Elle montre :
-- la branche active,
-- les fichiers suivis ou non,
-- les fichiers modifiés,
-- les fichiers prêts à être commités.
+1) La commande `git status` affiche l'état actuel du dépôt Git. Elle montre :
+   - la branche active,
+   - les fichiers suivis ou non,
+   - les fichiers modifiés,
+   - les fichiers prêts à être commités.
+   Dans mon cas, elle indique que le fichier README.md était un fichier non suivi (untracked).
 
-Dans mon cas, elle indique que le fichier README.md est un fichier non suivi (untracked).
+2) Après avoir utilisé `git add README.md`, `git status` m’a indiqué que ce fichier était maintenant prêt à être commit (dans la zone de staging).
+
+3) La commande `git add .` ajoute tous les fichiers non suivis ou modifiés à la zone de staging. Cela permet de préparer plusieurs fichiers pour un commit d’un coup.
+
+4) J’ai ensuite utilisé `git commit -m "Ajout du fichier README.md avec le titre du TP"` pour enregistrer ce changement dans l’historique du projet.
+
+5) La commande `git log` m’a montré les informations suivantes :
+   - Le hash du commit
+   - L’auteur (aaberk)
+   - La date du commit
+   - Le message associé au commit
+
+6) J’ai ajouté une nouvelle ligne à `README.md`, et j’ai comparé les changements :
+   - `git diff` m’a affiché les différences entre le fichier modifié et l’index (avant le `git add`).
+   - `git diff --staged` m’a affiché les différences entre le fichier dans l’index (staging area) et le dernier commit (HEAD).
+
+7) Différences entre les commandes :
+   - `git status` : Affiche l’état du dépôt actuel.
+   - `git diff` : Montre les différences non ajoutées au staging.
+   - `git diff --staged` : Montre les différences dans le staging avant commit.
+   - `git log` : Montre l’historique des commits.
+   - `git show <hash>` : Détaille un commit (message + modifications). Exemple : `git show HEAD` m’a montré le contenu ajouté dans le fichier README.md lors du premier commit.
+
+8) J’ai créé deux fichiers :
+   - `fichier1.txt` : contient "Fichier à garder"
+   - `brouillon.txt` : contient "Fichier brouillon"
+   Puis je les ai ajoutés à la zone de staging avec `git add .`.
+
+9) J’ai utilisé `git reset brouillon.txt` pour retirer ce fichier de la zone de staging.
+   Il reste présent dans le répertoire de travail, mais ne sera pas inclus dans le prochain commit.
+
+10) Grâce à `git log --name-only`, j’ai pu vérifier que le fichier `brouillon.txt` ne faisait pas partie du commit.
+    Seuls `fichier1.txt`, `README.md` et `reponses.txt` ont été ajoutés.
+
+11) Pour envoyer mes fichiers sur GitHub, j’ai fait les étapes suivantes :
+    - Création d’un dépôt sur GitHub (sans README).
+    - Ajout du dépôt distant avec :
+      `git remote add origin https://github.com/<aaberk>/<tp1>.git`
+    - Envoi des fichiers avec :
+      `git push origin develop`
+
+12) Pour vérifier que le dépôt a bien été mis en ligne :
+    - J’ai regardé l’onglet "Commits" sur GitHub.
+    - J’ai aussi utilisé `git log` localement pour voir que les commits étaient bien présents.
+
+13) J’ai cloné un autre projet Git avec la commande :
+    `git clone https://github.com/PaulineLam24/TP-Git.git`
+
+14) Après avoir cloné le dépôt https://github.com/PaulineLam24/TP-Git.git, je me suis placé dans le dossier cloné avec la commande :
+    cd TP-Git
+
+    Le fichier présent est : README.md
+
+    Liste des commits :
+    - f8138d7 : Correctif README.md
+    - f7a7e75 : Ajout dans README.md
+    - 9b68886 : Initial commit
+
+15) Pour observer les différences entre les commits :
+
+    - Entre le commit initial et le deuxième :
+      `git diff 9b68886 f7a7e75`
+      Ce commit ajoute une 2e ligne dans le README.md.
+
+    - Entre le deuxième et le troisième :
+      `git diff f7a7e75 f8138d7`
+      Ce commit modifie la deuxième ligne pour qu'elle soit du texte et non un titre.
+
+    J’ai aussi utilisé `git log -p` pour afficher directement les modifications ligne par ligne entre chaque commit.
+
+
